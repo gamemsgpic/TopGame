@@ -7,6 +7,9 @@ public class PlayerHealth : LivingEntity
 {
     public Slider healthSlider;
     public Slider rotaSlider;
+
+    public bool isDeath;
+
     private Rotate rotate;
     private PlayerTop pt;
     private TopMove topMove;
@@ -19,6 +22,7 @@ public class PlayerHealth : LivingEntity
         topMove = GetComponent<TopMove>();
 
         topMove.enabled = true;
+        isDeath = false;
     }
 
     public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
@@ -57,6 +61,7 @@ public class PlayerHealth : LivingEntity
         healthSlider.gameObject.SetActive(false);
         pt.Die();
         topMove.enabled = false;
+        isDeath = true;
     }
 
     public override void AddHp(float add)

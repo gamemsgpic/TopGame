@@ -33,7 +33,7 @@ public class Rotate : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pt = GetComponent<PlayerTop>();
-        rb.maxAngularVelocity = 100;
+        rb.maxAngularVelocity = 100f;
     }
 
     private void FixedUpdate()

@@ -22,22 +22,28 @@ using UnityEngine;
 public class RotateMonster : MonoBehaviour
 {
     private Rigidbody rb;
-    public float angularSpeed = 100f;  // 힘의 크기를 증가
-  
+    private MonsterController monsterControl;
+    public float angularSpeed = 10f;  // 힘의 크기를 증가
+    public Transform uiTransform;
+    public Transform uiTransform2;
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.maxAngularVelocity = 100;
+        monsterControl = GetComponent<MonsterController>();
+        rb.maxAngularVelocity = 100f;
     }
 
     private void FixedUpdate()
     {
         // 회전 힘을 더 크게 적용
-
-        rb.AddTorque(transform.up * angularSpeed);
-
+        if (!monsterControl.isDeath)
+        {
+            rb.AddTorque(transform.up * angularSpeed);
+            uiTransform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+            uiTransform2.rotation = Quaternion.Euler(-90f, 0f, 0f);
+        }
     }
 }
 // 무게중심 낮추기, 그게 아니면 부딪쳤을 때 반환되는 값에서 Y값에 0.5 곱하기 등 
